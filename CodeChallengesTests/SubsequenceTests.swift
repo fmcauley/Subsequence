@@ -69,4 +69,14 @@ class SubsequenceTests: XCTestCase {
         
         XCTAssertEqual(output, expected)
     }
+    
+    func testAnotherOptimizationUsingADictionary() {
+        let subsequence = Subsequence()
+        let str = "abppplee"
+        let subs = ["able", "ale", "apple", "bale", "kangaroo"]
+        let output = subsequence.findLongestSubsequenceWithMapedString(str, list: subs)
+        let expected = "apple"
+        
+        XCTAssertEqual(output, expected)
+    }
 }

@@ -84,4 +84,44 @@ class Subsequence {
         }
         return longestStr
     }
+    
+    func findLongestSubsequenceWithMapedString(_ str: String, list: [String]) -> String {
+        
+        //process str into a map
+        var dict = [Character:[Int]]()
+        
+        for x in 0..<str.count {
+            let strIndex = str.index(str.startIndex, offsetBy: x)
+            if dict[str[strIndex]] == nil {
+                dict[str[strIndex]] = [x]
+            } else if dict[str[strIndex]] != nil {
+                dict[str[strIndex]]?.append(x)
+            }
+        }
+        
+        // sort the list large to small
+        let sortedList = list.sorted {$0.count > $1.count}
+        var returnValue = ""
+        for x in sortedList {
+            for y in 0..<x.count {
+                let xIndex = x.index(x.startIndex, offsetBy: y)
+                let char = x[xIndex]
+                
+                if dict[char] == nil {
+                    break
+                }
+                
+                
+                if dict[char] != nil {
+                    returnValue += String(char)
+                }
+                
+            }
+            if returnValue.count == x.count {
+                return returnValue
+            }
+        }
+        
+        return ""
+    }
 }
