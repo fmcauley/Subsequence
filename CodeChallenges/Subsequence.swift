@@ -46,4 +46,42 @@ class Subsequence {
         
         return returnValue
     }
+    
+    func findLongestWithOrderedList(_ str: String, list: [String]) -> String {
+        let orderedList = list.sorted {$0.count > $1.count}
+        var longestStr = ""
+        for x in orderedList {
+            if x.count > str.count {
+                break
+            }
+            
+            var i = 0
+            var j = 0
+            
+            while i < x.count && j < str.count {
+                
+                let subIndex = x.index(x.startIndex, offsetBy: i)
+                let strIndex = str.index(str.startIndex, offsetBy: j)
+                
+                //the str does not contain a char from x then it's not a subSequence
+                if !str.contains(x[subIndex]) {
+                    break
+                }
+                
+                if x[subIndex] == str[strIndex] {
+                    let placeHolder = String(x[subIndex])
+                    longestStr += placeHolder
+                    i += 1
+                    j += 1
+                } else {
+                    j += 1
+                }
+            }
+            if longestStr.count > 0 {
+                return longestStr
+            }
+            
+        }
+        return longestStr
+    }
 }

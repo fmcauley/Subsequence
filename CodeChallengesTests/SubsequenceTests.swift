@@ -59,4 +59,14 @@ class SubsequenceTests: XCTestCase {
         
         XCTAssertEqual(output, expected)
     }
+    
+    func testOptimizationWithOrderedListOfWords() {
+        let subsequence = Subsequence()
+        let str = "abppplee"
+        let subs = ["able", "ale", "apple", "bale", "kangaroo"]
+        let output = subsequence.findLongestWithOrderedList(str, list: subs)
+        let expected = "apple"
+        
+        XCTAssertEqual(output, expected)
+    }
 }
